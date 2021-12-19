@@ -35,7 +35,7 @@
 | user                | reference | null: false , foreign_key: true |
 
 ### Association
-- has_many :sending_logs
+- has_one :sending_logs
 - belongs_to :user
 - belongs_to :category
 - belongs_to :status
@@ -56,8 +56,6 @@
 
 
 ### Association
-- belongs_to :user
-- belongs_to :prefecture
 - belongs_to :sending_log
 
 # sending_logs_table
@@ -68,6 +66,6 @@
 | item                | reference | null: false , foreign_key: true |
 
 ### Association
-- has_many :sending_address
+- has_one :sending_address
 - belongs_to :user
 - belongs_to :item
