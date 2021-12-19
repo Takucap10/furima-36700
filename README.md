@@ -18,8 +18,7 @@
 
 ### Association
 * has_many :items
-* has_many :sending_address
-* has_many :sending_log
+* has_many :sending_logs
 
 ## items_table
 
@@ -36,8 +35,7 @@
 | user                | reference | null: false , foreign_key: true |
 
 ### Association
-- has_many :sending_log
-- has_one :sending_address
+- has_many :sending_logs
 - belongs_to :user
 - belongs_to :category
 - belongs_to :status
@@ -54,14 +52,15 @@
 | block               | string    | null: false                     |
 | building            | string    |                                 |
 | phone_number        | string    | null: false                     |
-| user_id             | reference | null: false , foreign_key: true |
+| sending_log         | reference | null: false , foreign_key: true |
+
 
 ### Association
-- has_one :item
 - belongs_to :user
 - belongs_to :prefecture
+- belongs_to :sending_log
 
-# sending_log_table
+# sending_logs_table
 
 | Column              | Type      | Options                         |
 | ------------------- | --------- | ------------------------------- |
@@ -69,5 +68,6 @@
 | item                | reference | null: false , foreign_key: true |
 
 ### Association
+- has_many :sending_address
 - belongs_to :user
 - belongs_to :item
