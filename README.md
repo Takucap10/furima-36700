@@ -18,24 +18,24 @@
 
 ### Association
 * has_many :items
-* has_many :sending_logs
+* has_many :sending_log
 
 ## items_table
 
-| Column              | Type      | Options                         |
-| ------------------- | --------- | ------------------------------- |
-| name                | string    | null: false                     |
-| information         | text      | null: false                     |
-| category_id         | integer   | null: false                     |
-| status_id           | integer   | null: false                     |
-| postage_id          | integer   | null: false                     |
-| prefecture_id       | integer   | null: false                     |
-| sending_days_id     | integer   | null: false                     |
-| price               | integer   | null: false                     |
-| user                | reference | null: false , foreign_key: true |
+| Column              | Type       | Options                         |
+| ------------------- | ---------- | ------------------------------- |
+| name                | string     | null: false                     |
+| information         | text       | null: false                     |
+| category_id         | integer    | null: false                     |
+| status_id           | integer    | null: false                     |
+| postage_id          | integer    | null: false                     |
+| prefecture_id       | integer    | null: false                     |
+| sending_days_id     | integer    | null: false                     |
+| price               | integer    | null: false                     |
+| user                | references | null: false , foreign_key: true |
 
 ### Association
-- has_one :sending_logs
+- has_one :sending_log
 - belongs_to :user
 - belongs_to :category
 - belongs_to :status
@@ -44,15 +44,15 @@
 
 
 # sending_addresses_table
-| Column              | Type      | Options                         |
-| ------------------- | --------- | ------------------------------- |
-| post_code           | string    | null: false                     |
-| prefecture_id       | integer   | null: false                     |
-| city                | string    | null: false                     |
-| block               | string    | null: false                     |
-| building            | string    |                                 |
-| phone_number        | string    | null: false                     |
-| sending_log         | reference | null: false , foreign_key: true |
+| Column              | Type       | Options                         |
+| ------------------- | ---------- | ------------------------------- |
+| post_code           | string     | null: false                     |
+| prefecture_id       | integer    | null: false                     |
+| city                | string     | null: false                     |
+| block               | string     | null: false                     |
+| building            | string     |                                 |
+| phone_number        | string     | null: false                     |
+| sending_log         | references | null: false , foreign_key: true |
 
 
 ### Association
@@ -60,10 +60,10 @@
 
 # sending_logs_table
 
-| Column              | Type      | Options                         |
-| ------------------- | --------- | ------------------------------- |
-| user                | reference | null: false , foreign_key: true |
-| item                | reference | null: false , foreign_key: true |
+| Column              | Type       | Options                         |
+| ------------------- | ---------- | ------------------------------- |
+| user                | references | null: false , foreign_key: true |
+| item                | references | null: false , foreign_key: true |
 
 ### Association
 - has_one :sending_address
