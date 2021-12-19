@@ -2,7 +2,7 @@
 
 #　DB 設計
 
-## users table
+## users_table
 
 | Column              | Type    | Options                    |
 | ------------------- | ------- | -------------------------- |
@@ -13,19 +13,15 @@
 | last_name           | string  | null: false                |
 | first_name_kana     | string  | null: false                |
 | last_name_kana      | string  | null: false                |
-| birth_year_id       | integer | null: false                |
-| birth_month_id      | integer | null: false                |
-| birth_day_idb       | integer | null: 
-false                |
+| birth_day           | date    | null: false                |
+
 
 ### Association
 * has_many :items
-* has_many :address
-* belongs_to :birth_year
-* belongs_to :birth_month
-* belongs_to :birth_day
+* has_many :sending_address
+* has_many :sending_log
 
-## items table
+## items_table
 
 | Column              | Type      | Options                         |
 | ------------------- | --------- | ------------------------------- |
@@ -33,13 +29,15 @@ false                |
 | information         | text      | null: false                     |
 | category_id         | integer   | null: false                     |
 | status_id           | integer   | null: false                     |
+| postage_id          | integer   | null: false                     |
 | prefecture_id       | integer   | null: false                     |
 | sending_days_id     | integer   | null: false                     |
 | price               | integer   | null: false                     |
-| user_id             | reference | null: false , foreign_key: true |
+| user                | reference | null: false , foreign_key: true |
 
 ### Association
-- has_one :address
+- has_many :sending_log
+- has_one :sending_address
 - belongs_to :user
 - belongs_to :category
 - belongs_to :status
@@ -47,15 +45,15 @@ false                |
 - belongs_to :sending_days
 
 
-# addresses table
+# sending_addresses_table
 | Column              | Type      | Options                         |
 | ------------------- | --------- | ------------------------------- |
-| post_code           | integer   | null: false                     |
+| post_code           | string    | null: false                     |
 | prefecture_id       | integer   | null: false                     |
 | city                | string    | null: false                     |
 | block               | string    | null: false                     |
 | building            | string    |                                 |
-| phone_number        | integer   | null: false                     |
+| phone_number        | string    | null: false                     |
 | user_id             | reference | null: false , foreign_key: true |
 
 ### Association
@@ -63,3 +61,13 @@ false                |
 - belongs_to :user
 - belongs_to :prefecture
 
+# sending_log_table
+
+| Column              | Type      | Options                         |
+| ------------------- | --------- | ------------------------------- |
+| user                | reference | null: false , foreign_key: true |
+| item                | reference | null: false , foreign_key: true |
+
+### Association
+- belongs_to :user
+- belongs_to :item
