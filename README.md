@@ -30,7 +30,7 @@
 | status_id           | integer    | null: false                     |
 | postage_id          | integer    | null: false                     |
 | prefecture_id       | integer    | null: false                     |
-| sending_days_id     | integer    | null: false                     |
+| sending_day_id     | integer    | null: false                     |
 | price               | integer    | null: false                     |
 | user                | references | null: false , foreign_key: true |
 
@@ -40,7 +40,7 @@
 - belongs_to :category
 - belongs_to :status
 - belongs_to :prefecture
-- belongs_to :sending_days
+- belongs_to :sending_day
 
 
 # sending_addresses_table
