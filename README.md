@@ -18,7 +18,7 @@
 
 ### Association
 * has_many :items
-* has_many :sending_log
+* has_many :sending_logs
 
 ## items_table
 
