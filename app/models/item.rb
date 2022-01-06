@@ -17,6 +17,7 @@ class Item < ApplicationRecord
   validates :postage_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :sending_day_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :price
+  validates :price, format: { with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters.' }
   end
+  validates_inclusion_of :price, in:300..9999999, message " is out of setting range"
 end
