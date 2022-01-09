@@ -1,11 +1,11 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   #ActiveHash用のアソシエーション
-  belongs_to :category
-  belongs_to :status
-  belongs_to :postage
-  belongs_to :prefecture
-  belongs_to :sending_day
+  belongs_to_active_hash :category
+  belongs_to_active_hash :status
+  belongs_to_active_hash :postage
+  belongs_to_active_hash :prefecture
+  belongs_to_active_hash :sending_day
 
   #通常アソシエーション
   belongs_to :user
