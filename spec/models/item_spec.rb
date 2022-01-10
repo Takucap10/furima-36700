@@ -87,15 +87,20 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
-      # it 'priceが全角数字では保存できない' do
-      # @item.price = １０００
-      # @item.valid
-      # expect(@item.errors.full_messages).to include("Price is out of setting range")
-      # end
+      it 'priceが全角数字では保存できない' do
+        @item.price = '１０００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not a number')
+      end
       it 'imageがなければ保存できない' do
         @item.image = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
+      end
+      it 'userが紐づいてなければ保存できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
