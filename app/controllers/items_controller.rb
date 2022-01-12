@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
     item = Item.find(params[:id])
     if item.destroy
       redirect_to root_path
-    else 
+    else
       render :show
     end
   end
@@ -53,7 +53,7 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-  
+
   def contributor_confiramation
     redirect_to root_path unless current_user == @item.user
   end
