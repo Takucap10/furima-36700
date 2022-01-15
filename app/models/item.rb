@@ -10,6 +10,7 @@ class Item < ApplicationRecord
   # 通常アソシエーション
   belongs_to :user
   has_one_attached :image
+  has_one :order
 
   # バリデーション
   with_options presence: true do

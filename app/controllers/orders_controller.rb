@@ -1,13 +1,14 @@
 class OrdersController < ApplicationController
 
   def index
+    @item = Item.find(params[:item_id])
   end
   
   def new
   end
   
   def create
-    @order = Oder.create(order_params)
+    @order = Order.create(order_params)
     Address.create(address_params)
     redirect_to root_path
   end
