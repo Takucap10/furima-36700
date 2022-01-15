@@ -18,7 +18,7 @@
 
 ### Association
 * has_many :items
-* has_many :sending_logs
+* has_many :orders
 
 ## items_table
 
@@ -30,12 +30,12 @@
 | status_id           | integer    | null: false                     |
 | postage_id          | integer    | null: false                     |
 | prefecture_id       | integer    | null: false                     |
-| sending_day_id     | integer    | null: false                     |
+| sending_day_id      | integer    | null: false                     |
 | price               | integer    | null: false                     |
 | user                | references | null: false , foreign_key: true |
 
 ### Association
-- has_one :sending_log
+- has_one :order
 - belongs_to :user
 - belongs_to :category
 - belongs_to :status
@@ -43,7 +43,7 @@
 - belongs_to :sending_day
 
 
-# sending_addresses_table
+# addresses_table
 | Column              | Type       | Options                         |
 | ------------------- | ---------- | ------------------------------- |
 | post_code           | string     | null: false                     |
@@ -52,13 +52,13 @@
 | block               | string     | null: false                     |
 | building            | string     |                                 |
 | phone_number        | string     | null: false                     |
-| sending_log         | references | null: false , foreign_key: true |
+| order               | references | null: false , foreign_key: true |
 
 
 ### Association
-- belongs_to :sending_log
+- belongs_to :order
 
-# sending_logs_table
+# order_table
 
 | Column              | Type       | Options                         |
 | ------------------- | ---------- | ------------------------------- |
@@ -66,6 +66,6 @@
 | item                | references | null: false , foreign_key: true |
 
 ### Association
-- has_one :sending_address
+- has_one :address
 - belongs_to :user
 - belongs_to :item
