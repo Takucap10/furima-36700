@@ -15,6 +15,7 @@
           <span>Sold Out!!</span>
         </div>
       <% end %>
+    <% end %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -24,7 +25,17 @@
         <%= @item.postage.name %>
       </span>
     </div>
-      <% unless  order.item_id == @item.id %>
+
+    <%# 販売されているかの判定機 %>
+    <% @sold = 0 %>
+    <% @orders.each do |order| %>
+      <% if order.item_id == @item.id %>
+        <% @sold += 1 %>
+      <% end %>
+    <% end %>
+    <%# 販売されているかの判定機 %>
+
+      <% unless  @sold == 1 %>
         <% if user_signed_in? %>
           <% if current_user.id == @item.user.id %>
             <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
@@ -35,7 +46,6 @@
           <% end %>
         <% end %>
       <% end %>
-    <% end %>
 
     <div class="item-explain-box">
       <span><%= @item.information %></span>
