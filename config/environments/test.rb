@@ -45,4 +45,7 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
+  
+  #active_strageを使用した際に発生するMySQLエラーを防止
+  config.active_job.queue_adapter = :inline
 end
