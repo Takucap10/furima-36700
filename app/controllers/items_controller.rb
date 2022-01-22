@@ -65,9 +65,7 @@ class ItemsController < ApplicationController
 
   def sold_out
     @orders.each do |order|
-      if order.item_id == @item.id
-          redirect_to root_path
-      end
+      redirect_to root_path if order.item_id == @item.id
     end
   end
 end

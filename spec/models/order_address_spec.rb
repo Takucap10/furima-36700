@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe OrderAddress, type: :model do
   describe '商品購入機能' do
-  before do
-    item = FactoryBot.create(:item)
-    user = FactoryBot.create(:user)
-    @order_address = FactoryBot.build(:order_address, user_id: user.id, item_id: item.id)
-  end
+    before do
+      item = FactoryBot.create(:item)
+      user = FactoryBot.create(:user)
+      @order_address = FactoryBot.build(:order_address, user_id: user.id, item_id: item.id)
+    end
 
     context '商品を購入できる場合' do
       it 'post_code,prefecture_id,city,block,phone_number,tokenが存在すれば登録できる' do
@@ -18,7 +18,7 @@ RSpec.describe OrderAddress, type: :model do
       end
       it '電話番号が11桁でも登録できる' do
         @order_address.phone_number = '09012345678'
-      expect(@order_address).to be_valid
+        expect(@order_address).to be_valid
       end
     end
 
@@ -31,8 +31,7 @@ RSpec.describe OrderAddress, type: :model do
       it 'post_codeが数字だけでは登録できない' do
         @order_address.post_code = '1234567'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Post code is invalid. Enter it as follows(123-4567)")
-
+        expect(@order_address.errors.full_messages).to include('Post code is invalid. Enter it as follows(123-4567)')
       end
       it 'prefecture_idが空では登録できない' do
         @order_address.prefecture_id = ''
@@ -62,12 +61,12 @@ RSpec.describe OrderAddress, type: :model do
       it 'phone_numberに"-"が入ると登録できない' do
         @order_address.phone_number = '060-1234-5678'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is invalid. Input only number")
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
       it 'phone_numberが10桁未満だと登録できない' do
         @order_address.phone_number = '123456789'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is too short (minimum length 10)")
+        expect(@order_address.errors.full_messages).to include('Phone number is too short (minimum length 10)')
       end
       it 'tokenが空では登録できない' do
         @order_address.token = ''
