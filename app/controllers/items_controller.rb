@@ -1,7 +1,9 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:index, :show, :edit]
   before_action :contributor_confiramation, only: [:edit, :update, :destroy]
+  before_action :sold_out, only: :edit
 
   def index
     @items = Item.order('created_at DESC')
@@ -53,7 +55,17 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def set_order
+    @orders = Order.all
+  end
+
   def contributor_confiramation
     redirect_to root_path unless current_user == @item.user
+  end
+
+  def sold_out
+    @orders.each do |order|
+      redirect_to root_path if order.item_id == @item.id
+    end
   end
 end
